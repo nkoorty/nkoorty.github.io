@@ -12,6 +12,14 @@ theme = 'PaperMod'
     name = "github"
     url = "https://github.com/nkoorty"
 
+  [[params.socialIcons]]
+    name = "twitter"
+    url = "https://twitter.com/nkoorty"
+
+  [[params.socialIcons]]
+    name = "linkedin"
+    url = "https://www.linkedin.com/in/artemiy-malyshau/"
+
 [menu]
 
   [[menu.main]]
