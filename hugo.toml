@@ -35,7 +35,13 @@ theme = 'PaperMod'
     weight = 2
 
   [[menu.main]]
+    identifier = "hackathons"
+    name = "Hackathons"
+    url = "/hackathons/"
+    weight = 3
+
+  [[menu.main]]
     identifier = "contact"
     name = "Contact"
     url = "/contact/"
-    weight = 3
+    weight = 4

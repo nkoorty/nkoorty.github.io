@@ -52,7 +52,6 @@ _Data Science Intern_
 * Implemented analytical method in Python that identified faulty addresses and flagged them 19% faster than previously
 * Debugged the Python exporting of the attribution information tags by implementing new data visualisation techniques in local Jupyter Notebook files. Implemented the exporting of new information attribution files
 
-
 ---
 ### Extracurricular Experience
 
