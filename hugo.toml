@@ -6,7 +6,7 @@ theme = 'PaperMod'
 [params]
   [params.homeInfoParams]
     Title = "Artemiy Malyshau"
-    Content = "Hi, this website acts as an 'extended' CV or portfolio. I'm an MSc student and scholar at Imperial College London studying Applied Computational Science. My research interests lie in (multi-agent) reinforcement learning and iOS development. I also really like attending hackathons."
+    Content = "Hi, this website acts as an 'extended' CV or portfolio. I'm an MSc student and scholar at Imperial College London studying Applied Computational Science and Engineering. My research interests lie in (multi-agent) reinforcement learning and iOS development. I also really like attending hackathons."
 
   [[params.socialIcons]]
     name = "github"
