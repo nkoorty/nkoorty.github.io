@@ -5,6 +5,18 @@ draft = false
 
 I've been quite successful at hackathons, so here's a list of all the hackathons I've won and their repos, if available.
 
+### Ripple: New Horizon Hackathon - 1st Place
+Built an iOS App that uses the XRP EVM sidechain for subscriptions and loyalty schemes powered by the Ripple blockchain in an effort to make subscriptions easier and more decentralised.
+
+![RL2](/images/dew_ripple.jpg) 
+
+**Repository:** [Dew](https://github.com/nkoorty/Dew)  
+**Social Media Promotion:**
+* https://twitter.com/easya_app/status/1743710649266454539
+* https://devpost.com/software/dew-memberships-and-subscriptions-decentralized
+
+---
+
 ### Stacks Bitcoin Hackathon - 1st Place
 Built an iOS App that acts as "Tinder for Investing" using sBTC and the Stacks Blockchain. Won £6,000 and first place.
 
