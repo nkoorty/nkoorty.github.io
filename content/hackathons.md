@@ -8,7 +8,7 @@ I've been quite successful at hackathons, so here's a list of all the hackathons
 ### Ripple: New Horizon Hackathon - 1st Place
 Built an iOS App that uses the XRP EVM sidechain for subscriptions and loyalty schemes powered by the Ripple blockchain in an effort to make subscriptions easier and more decentralised.
 
-![RL2](/images/dew_ripple.jpg) 
+![Dew](/images/dew_ripple.png) 
 
 **Repository:** [Dew](https://github.com/nkoorty/Dew)  
 **Social Media Promotion:**
