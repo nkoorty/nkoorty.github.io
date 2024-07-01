@@ -5,6 +5,63 @@ draft = false
 
 I've been quite successful at hackathons, so here's a list of all the hackathons I've won and their repos, if available.
 
+### Ripple: APEX Hackathon - 1st Place
+Built KeyGuard - the first decentralized key management (DKM) infrastructure built on the XRP Ledger. It enables dApps to efficiently and securely manage account signer keys in a decentralized manner. Won $5,000.
+
+![KeyGuard](/images/keyguard.jpg) 
+
+**Repository:** [KeyGuard](https://github.com/jjjutla/xrpl-dkmi)  
+**Social Media Promotion:**
+* https://twitter.com/easya_app/status/1743710649266454539
+* https://x.com/nkoorty/status/1801338065824125326
+
+### Stacks Harvard Hackathon - 2nd Place
+We placed 2nd place using Coast, a buy-now-pay-later (BNPL) iOS app that transforms BTC into a practical payment option for everyday purchases. Users can buy products by making a small upfront payment and collateralising the rest with BTC, then pay off the balance in regular instalments using fiat or BTC.
+
+![Coast](/images/coast.jpg) 
+
+**Repository:** [Coast](https://github.com/nkoorty/StacksBoston)  
+**Social Media Promotion:**
+* https://x.com/easya_app/status/1785415190617452997
+
+### Ripple London Hackathon - 2nd Place
+Built RipSplit - an iOS dApp built on the XRP EVM sidechain. It simplifies the process of splitting expenses and settling payments by using account abstraction and uses smart contracts to facilitate group management in a trustless and decentralised manner. Won $3,000.
+
+![RipSplit](/images/ripsplit.jpg) 
+
+**Repository:** [RipSplit](https://github.com/nkoorty/Ripple)  
+**Social Media Promotion:**
+* https://x.com/easya_app/status/1780170362073846235
+
+### Vechain x BCG Hackathon in Cambridge, UK - 3rd Place
+We built DishDeal, a reduce-food-waste to earn iOS app that uses augmented reality and machine learning to tokenise food into 3D NFTs, connecting consumers with restaurants that have excess food. Upon purchase and feedback, users are rewarded with B3TR tokens for each transaction, redeemable for future discounts or events at the participating restaurants. Won $2,000.
+
+![DishDeal](/images/dishdeal.jpg) 
+
+**Repository:** Private
+**Social Media Promotion:**
+* https://x.com/easya_app/status/1769757012005470647
+
+### ETH Oxford - 1st Place x2
+We built Modelo, an iOS app that uses Etherlink rollups and machine learning to tokenise real world assets into 3D NFTs while providing a marketplace to view and transfer them in AR. Won $2,000.
+
+![Modelo](/images/modelo.jpg) 
+
+**Repository:** Private
+**Social Media Promotion:**
+* https://x.com/HomeDAO_live/status/1803107744720822499
+* https://x.com/HomeDAO_live/status/1767167936714748135
+
+### ETH Global LFGHO Hackathon - 1st Place x2
+GhoShare is an iOS app created to address the spesific shortcoming in current expense splitting apps by enabling decentralised direct in-app settlements of payments using credit delegation, token swapping and cross-network transactions. Secured by biometric authentication and EIP 4337 smart accounts. Won $10,500.
+
+![GhoShare](/images/ghoshare.jpg) 
+
+**Repository:** Private
+**Social Media Promotion:**
+* https://x.com/ETHGlobal/status/1750244304247730214
+* https://ethglobal.com/showcase/ghoshare-nggb3
+
 ### Ripple: New Horizon Hackathon - 1st Place
 Built an iOS App that uses the XRP EVM sidechain for subscriptions and loyalty schemes powered by the Ripple blockchain in an effort to make subscriptions easier and more decentralised. Won $10,000 in addition to first place.
 
@@ -47,7 +104,7 @@ This was my first online hackathon that I worked solo on. I built an iOS App tha
 * https://sorobanathon.devpost.com/project-gallery
 
 ---
-### NAVH Consensys Hackathon - 1st Place *2
+### NAVH Consensys Hackathon - 1st Place x2
 Built an iOS App that
 
 This one's interesting, I actually took part in 2 project, and got first place in both. One was a music NFT marketplace on iOS, and another was a NFT marketplace that uses AR. Won $2,000, so $1,000 for each project.
