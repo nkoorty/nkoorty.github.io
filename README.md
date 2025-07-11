@@ -1,66 +1,138 @@
+Here’s a clean way to build a full **Tiptap → PDF download flow using `@react-pdf/renderer`**, with:
+
+* a download button inside your editor UI
+* a **mapper** from `jsonContent`
+* and **PDF export support**
+
+---
+
+## ✅ Step-by-Step Setup
+
+---
+
+### 1. **Install required packages**
+
+```bash
+npm install @react-pdf/renderer
 ```
-'use client'
 
-import React from 'react'
-import { useEditor, EditorContent } from '@tiptap/react'
-import StarterKit from '@tiptap/starter-kit'
-import Underline from '@tiptap/extension-underline'
-import Placeholder from '@tiptap/extension-placeholder'
-import CharacterCount from '@tiptap/extension-character-count'
-import TextAlign from '@tiptap/extension-text-align'
+---
 
-const MenuBar = ({ editor }: { editor: any }) => {
-  if (!editor) return null
+### 2. **Create a PDF Document Component from Tiptap JSON**
+
+Create a file `TiptapPDFDocument.jsx`:
+
+```jsx
+import React from 'react';
+import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
+
+const styles = StyleSheet.create({
+  page: { padding: 40 },
+  paragraph: { marginBottom: 10, fontSize: 12 },
+  bold: { fontWeight: 'bold' },
+  italic: { fontStyle: 'italic' },
+  heading: { fontSize: 18, marginBottom: 10, fontWeight: 'bold' },
+});
+
+const renderTextWithMarks = (node) => {
+  let style = {};
+  node.marks?.forEach((mark) => {
+    if (mark.type === 'bold') style = { ...style, ...styles.bold };
+    if (mark.type === 'italic') style = { ...style, ...styles.italic };
+  });
 
   return (
-    <div className="flex gap-2 mb-2 flex-wrap text-sm">
-      <button onClick={() => editor.chain().focus().toggleBold().run()} className={editor.isActive('bold') ? 'font-bold' : ''}>Bold</button>
-      <button onClick={() => editor.chain().focus().toggleItalic().run()} className={editor.isActive('italic') ? 'italic' : ''}>Italic</button>
-      <button onClick={() => editor.chain().focus().toggleUnderline().run()} className={editor.isActive('underline') ? 'underline' : ''}>Underline</button>
-      <button onClick={() => editor.chain().focus().toggleStrike().run()} className={editor.isActive('strike') ? 'line-through' : ''}>Strike</button>
+    <Text key={Math.random()} style={style}>
+      {node.text}
+    </Text>
+  );
+};
 
-      {[1, 2, 3, 4, 5, 6].map(level => (
-        <button
-          key={level}
-          onClick={() => editor.chain().focus().toggleHeading({ level }).run()}
-          className={editor.isActive('heading', { level }) ? 'font-bold' : ''}
-        >
-          H{level}
-        </button>
-      ))}
+const TiptapPDFDocument = ({ content }) => (
+  <Document>
+    <Page size="A4" style={styles.page}>
+      {content?.content?.map((node, idx) => {
+        if (node.type === 'heading') {
+          return (
+            <Text key={idx} style={styles.heading}>
+              {node.content?.map(renderTextWithMarks)}
+            </Text>
+          );
+        }
 
-      <button onClick={() => editor.chain().focus().toggleBulletList().run()}>• List</button>
-      <button onClick={() => editor.chain().focus().toggleOrderedList().run()}>1. List</button>
-      <button onClick={() => editor.chain().focus().toggleBlockquote().run()}>“ Quote</button>
-      <button onClick={() => editor.chain().focus().toggleCodeBlock().run()}>Code</button>
-      <button onClick={() => editor.chain().focus().setParagraph().run()}>Paragraph</button>
-      <button onClick={() => editor.chain().focus().unsetAllMarks().run()}>Clear</button>
-    </div>
-  )
-}
+        if (node.type === 'paragraph') {
+          return (
+            <View key={idx} style={styles.paragraph}>
+              {node.content?.map(renderTextWithMarks)}
+            </View>
+          );
+        }
 
-export default function Editor() {
+        // Extend with bullet lists, images, etc., as needed
+        return null;
+      })}
+    </Page>
+  </Document>
+);
+
+export default TiptapPDFDocument;
+```
+
+---
+
+### 3. **Use the Download Button Inside the Editor UI**
+
+Inside your editor component:
+
+```jsx
+import React from 'react';
+import { useEditor, EditorContent } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import TiptapPDFDocument from './TiptapPDFDocument';
+
+const MyEditor = () => {
   const editor = useEditor({
-    extensions: [
-      StarterKit.configure({ heading: { levels: [1, 2, 3, 4, 5, 6] } }),
-      Underline,
-      Placeholder.configure({ placeholder: 'Write something...' }),
-      CharacterCount.configure({ limit: 10000 }),
-      TextAlign.configure({ types: ['heading', 'paragraph'] }),
-    ],
-    content: '<p>Hello World</p>',
-  })
+    extensions: [StarterKit],
+    content: '<p>Hello world!</p>',
+  });
 
   return (
-    <div className="border rounded-md p-4">
-      <MenuBar editor={editor} />
-      <div className="border p-2 min-h-[200px]">
-        <EditorContent editor={editor} />
-      </div>
-      <p className="text-xs text-right mt-2 text-gray-500">
-        {editor?.storage.characterCount.characters()} characters
-      </p>
+    <div>
+      <EditorContent editor={editor} />
+
+      {editor && (
+        <div style={{ marginTop: 20 }}>
+          <PDFDownloadLink
+            document={<TiptapPDFDocument content={editor.getJSON()} />}
+            fileName="tiptap-export.pdf"
+          >
+            {({ loading }) => (
+              <button disabled={loading}>
+                {loading ? 'Preparing PDF...' : 'Download as PDF'}
+              </button>
+            )}
+          </PDFDownloadLink>
+        </div>
+      )}
     </div>
-  )
-}
+  );
+};
+
+export default MyEditor;
 ```
+
+---
+
+### ✅ Optional Enhancements
+
+* Add support for:
+
+  * `bullet_list` / `list_item`
+  * `code_block`
+  * `image` (needs `<Image />` with remote or base64 support)
+* Add a "Preview PDF" modal using `BlobProvider` from `@react-pdf/renderer`
+
+---
+
+Would you like a bullet list or image support example as well?
