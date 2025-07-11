@@ -1,30 +1,18 @@
-Here’s a clean way to build a full **Tiptap → PDF download flow using `@react-pdf/renderer`**, with:
-
-* a download button inside your editor UI
-* a **mapper** from `jsonContent`
-* and **PDF export support**
+Here’s a full **TypeScript (TSX)** version of the Tiptap → PDF export flow, cleanly integrated:
 
 ---
 
-## ✅ Step-by-Step Setup
+### ✅ 1. `TiptapPDFDocument.tsx`
 
----
-
-### 1. **Install required packages**
-
-```bash
-npm install @react-pdf/renderer
-```
-
----
-
-### 2. **Create a PDF Document Component from Tiptap JSON**
-
-Create a file `TiptapPDFDocument.jsx`:
-
-```jsx
+```tsx
 import React from 'react';
-import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
+import {
+  Document,
+  Page,
+  Text,
+  View,
+  StyleSheet,
+} from '@react-pdf/renderer';
 
 const styles = StyleSheet.create({
   page: { padding: 40 },
@@ -34,21 +22,35 @@ const styles = StyleSheet.create({
   heading: { fontSize: 18, marginBottom: 10, fontWeight: 'bold' },
 });
 
-const renderTextWithMarks = (node) => {
-  let style = {};
+type TiptapNode = {
+  type: string;
+  content?: TiptapNode[];
+  text?: string;
+  marks?: { type: string }[];
+};
+
+type TiptapDoc = {
+  type: string;
+  content: TiptapNode[];
+};
+
+const renderTextWithMarks = (node: TiptapNode): React.ReactNode => {
+  if (!node.text) return null;
+
+  let textStyle = {};
   node.marks?.forEach((mark) => {
-    if (mark.type === 'bold') style = { ...style, ...styles.bold };
-    if (mark.type === 'italic') style = { ...style, ...styles.italic };
+    if (mark.type === 'bold') textStyle = { ...textStyle, ...styles.bold };
+    if (mark.type === 'italic') textStyle = { ...textStyle, ...styles.italic };
   });
 
   return (
-    <Text key={Math.random()} style={style}>
+    <Text key={Math.random()} style={textStyle}>
       {node.text}
     </Text>
   );
 };
 
-const TiptapPDFDocument = ({ content }) => (
+const TiptapPDFDocument: React.FC<{ content: TiptapDoc }> = ({ content }) => (
   <Document>
     <Page size="A4" style={styles.page}>
       {content?.content?.map((node, idx) => {
@@ -68,7 +70,6 @@ const TiptapPDFDocument = ({ content }) => (
           );
         }
 
-        // Extend with bullet lists, images, etc., as needed
         return null;
       })}
     </Page>
@@ -80,18 +81,16 @@ export default TiptapPDFDocument;
 
 ---
 
-### 3. **Use the Download Button Inside the Editor UI**
+### ✅ 2. `MyEditor.tsx`
 
-Inside your editor component:
-
-```jsx
+```tsx
 import React from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import TiptapPDFDocument from './TiptapPDFDocument';
 
-const MyEditor = () => {
+const MyEditor: React.FC = () => {
   const editor = useEditor({
     extensions: [StarterKit],
     content: '<p>Hello world!</p>',
@@ -124,15 +123,4 @@ export default MyEditor;
 
 ---
 
-### ✅ Optional Enhancements
-
-* Add support for:
-
-  * `bullet_list` / `list_item`
-  * `code_block`
-  * `image` (needs `<Image />` with remote or base64 support)
-* Add a "Preview PDF" modal using `BlobProvider` from `@react-pdf/renderer`
-
----
-
-Would you like a bullet list or image support example as well?
+Would you like me to add support for bullet lists, code blocks, or images to this TSX version?
